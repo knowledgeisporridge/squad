@@ -51,6 +51,9 @@ tbody tr:nth-child(even) td.tc{background:#eef0ff}
 .chip.blue{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
 .chip.red{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
 .chip.hl{background:#fef08a;color:#713f12;border:2px solid #f59e0b}
+.eq-dot{display:inline-block;width:13px;height:13px;border-radius:50%;margin-left:5px;flex-shrink:0;vertical-align:middle}
+.eq-dot.blue{background:#1e40af}
+.eq-dot.red{background:#991b1b}
 #mobile-view{display:none}
 @media(max-width:640px){
   #desktop-view{display:none}
@@ -286,8 +289,12 @@ function hasName(ev, name) {
 }
 
 function chip(name, colour, filter) {
-  const cls = filter && name === filter ? 'hl' : colour;
-  return '<span class="chip ' + cls + '">' + name + '</span>';
+  const isMatch = filter && name === filter;
+  const cls = colour + (isMatch ? ' hl' : '');
+  let h = '<span class="chip ' + cls + '">' + name;
+  if (isMatch) h += '<span class="eq-dot ' + colour + '"></span>';
+  h += '</span>';
+  return h;
 }
 
 function renderEntry(entry, filter) {
@@ -359,7 +366,7 @@ function render(filter) {
   h += '<div class="leg"><div class="leg-bar" style="background:#e84545"></div>Kumite</div>';
   h += '<div class="leg"><div class="leg-swatch" style="background:#dbeafe;border-color:#93c5fd"></div>Blue equipment</div>';
   h += '<div class="leg"><div class="leg-swatch" style="background:#fee2e2;border-color:#fca5a5"></div>Red equipment</div>';
-  h += '<div class="leg"><div class="leg-swatch" style="background:#fef08a;border-color:#f59e0b"></div>Filtered competitor</div>';
+  h += '<div class="leg"><div class="leg-swatch" style="background:#fef08a;border-color:#f59e0b"></div>Filtered competitor (dot = equipment colour)</div>';
   h += '<div class="leg"><strong style="font-size:.76rem">Team:</strong><span style="font-size:.76rem;margin-left:3px">names joined by &amp;</span></div>';
   h += '</div>';
 
@@ -401,9 +408,18 @@ function render(filter) {
   h += '<div id="mobile-view">' + renderMobileList(filter) + '</div>';
 
   document.getElementById('app').innerHTML = h;
+
+  const url = new URL(window.location);
+  if (filter) {
+    url.searchParams.set('competitor', filter);
+  } else {
+    url.searchParams.delete('competitor');
+  }
+  history.replaceState(null, '', url);
 }
 
-render('');
+const initialFilter = new URLSearchParams(window.location.search).get('competitor') || '';
+render(initialFilter);
 </script>
 </body>
 </html>
