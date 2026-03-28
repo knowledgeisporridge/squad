@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North East Open – March 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#eef0f5;color:#1a1a2e;min-height:100vh}
+header{background:#1a1a2e;color:#fff;padding:16px 24px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+header h1{font-size:1.25rem;font-weight:700;letter-spacing:-.3px}
+header span{font-size:.82rem;opacity:.55}
+.legend{padding:9px 24px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.leg{display:flex;align-items:center;gap:5px;font-size:.76rem;color:#555;white-space:nowrap}
+.leg-bar{width:4px;height:14px;border-radius:2px}
+.leg-swatch{width:26px;height:10px;border-radius:3px;border:1px solid rgba(0,0,0,.18)}
+.controls{background:#fff;border-bottom:2px solid #e2e8f0;padding:11px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.controls label{font-weight:600;font-size:.86rem;color:#2d3748}
+.controls select{padding:7px 11px;border:1.5px solid #cbd5e0;border-radius:7px;font-size:.86rem;background:#fff;cursor:pointer;color:#1a202c}
+.controls select:focus{outline:none;border-color:#7c6fef}
+.clear-btn{padding:6px 13px;background:#ede9ff;color:#5b52d6;border:1.5px solid #c4baff;border-radius:7px;cursor:pointer;font-size:.82rem;font-weight:700}
+.clear-btn:hover{background:#ddd8ff}
+.filt-info{font-size:.81rem;color:#666;margin-left:2px}
+.filt-info strong{color:#1a1a2e}
+.wrap{overflow-x:auto;padding:16px 20px}
+table{border-collapse:collapse;width:100%;min-width:880px}
+thead th{background:#1a1a2e;color:#fff;padding:9px 10px;text-align:center;font-size:.82rem;font-weight:600}
+thead th.tc{background:#0f0f1e;width:78px}
+tbody tr{border-bottom:1px solid #dde4ef}
+td{vertical-align:top;padding:5px;border-right:1px solid #dde4ef;background:#fff;min-width:155px}
+td.tc{background:#f4f5ff;font-weight:700;font-size:.78rem;text-align:center;color:#4a5568;white-space:nowrap;vertical-align:middle;padding:8px 5px;min-width:78px;width:78px}
+tbody tr:nth-child(even) td{background:#fafbff}
+tbody tr:nth-child(even) td.tc{background:#eef0ff}
+.card{background:#fff;border-radius:8px;border:1px solid #e2e8f4;padding:7px 9px;margin-bottom:4px;transition:opacity .15s}
+.card:last-child{margin-bottom:0}
+.card.kata{border-left:4px solid #7c6fef}
+.card.kumite{border-left:4px solid #e84545}
+.card.dimmed{opacity:.15}
+.card-head{display:flex;align-items:center;gap:4px;margin-bottom:5px;flex-wrap:wrap}
+.ecode{font-weight:800;font-size:.82rem;color:#1a1a2e}
+.badge{font-size:.67rem;padding:2px 6px;border-radius:9px;font-weight:700;white-space:nowrap}
+.kb{background:#ede9ff;color:#5b52d6}
+.ku{background:#fde8e8;color:#c82020}
+.kp{background:#fef9c3;color:#854d0e}
+.entry{margin-top:4px}
+.team-entry{background:#f8f7ff;border:1px solid #e4dfff;border-radius:6px;padding:4px 6px;margin-top:4px}
+.sub{font-size:.65rem;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.chips{display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.tsep{font-size:.72rem;color:#aaa;font-weight:700;margin:0 1px}
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:.74rem;font-weight:700;white-space:nowrap;line-height:1.4}
+.chip.blue{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+.chip.red{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.chip.hl{background:#fef08a;color:#713f12;border:2px solid #f59e0b}
+#mobile-view{display:none}
+@media(max-width:640px){
+  #desktop-view{display:none}
+  #mobile-view{display:block}
+  .mobile-list{padding:10px 12px}
+  .time-block{margin-bottom:16px}
+  .time-hdg{font-size:.92rem;font-weight:800;color:#fff;background:#1a1a2e;padding:7px 12px;border-radius:7px;margin-bottom:7px}
+  .kt{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}
+  .wrap{padding:8px}
+}
+</style>
+</head>
+<body>
+
+<script id="sd" type="application/json">
+{
+  "name": "North East Open",
+  "date": "March 2026",
+  "events": [
+    {
+      "code": "KA23", "type": "Kata", "pool": "A", "time": "09:00", "tatami": 1,
+      "entries": [
+        {"entryType": "team", "subTeam": "York B", "colour": "blue", "competitors": ["Elanah", "Sophie"]},
+        {"entryType": "team", "subTeam": "York A", "colour": "red",  "competitors": ["Moe", "Gabriel"]}
+      ]
+    },
+    {
+      "code": "KA23", "type": "Kata", "pool": "B", "time": "09:00", "tatami": 2,
+      "entries": [
+        {"entryType": "team", "subTeam": "York C", "colour": "blue", "competitors": ["Charlotte", "Lewis (Little)"]},
+        {"entryType": "team", "subTeam": "York D", "colour": "blue", "competitors": ["Daniel", "Robert"]}
+      ]
+    },
+    {
+      "code": "KA24", "type": "Kata", "pool": "A", "time": "09:00", "tatami": 3,
+      "entries": [
+        {"entryType": "team", "subTeam": "York A", "colour": "blue", "competitors": ["Abbie", "Grace"]}
+      ]
+    },
+    {
+      "code": "KA24", "type": "Kata", "pool": "B", "time": "09:00", "tatami": 4,
+      "entries": [
+        {"entryType": "team", "subTeam": "York B", "colour": "red",  "competitors": ["Robin", "Forrest"]},
+        {"entryType": "team", "subTeam": "JKS",    "colour": "blue", "competitors": ["Lewis (Big)", "Dominic"]}
+      ]
+    },
+    {
+      "code": "KA3", "type": "Kata", "pool": null, "time": "10:00", "tatami": 2,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Charlotte"]}
+      ]
+    },
+    {
+      "code": "KA2", "type": "Kata", "pool": null, "time": "10:15", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "red", "competitors": ["Robert", "Lewis (Little)", "Daniel"]}
+      ]
+    },
+    {
+      "code": "KA5", "type": "Kata", "pool": null, "time": "10:30", "tatami": 3,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Robin", "Forrest"]}
+      ]
+    },
+    {
+      "code": "KA15", "type": "Kata", "pool": null, "time": "10:45", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Dilan"]}
+      ]
+    },
+    {
+      "code": "KA8", "type": "Kata", "pool": null, "time": "11:00", "tatami": 4,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Abbie", "Grace"]}
+      ]
+    },
+    {
+      "code": "KA4", "type": "Kata", "pool": null, "time": "11:15", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Elanah", "Sophie", "Gabriel", "Moe"]}
+      ]
+    },
+    {
+      "code": "KA11", "type": "Kata", "pool": null, "time": "12:00", "tatami": 2,
+      "entries": [
+        {"entryType": "individual", "subTeam": "JKS", "colour": "blue", "competitors": ["Lewis (Big)", "Dominic"]}
+      ]
+    },
+    {
+      "code": "KU18", "type": "Kumite", "pool": null, "time": "12:15", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "red",  "competitors": ["Harry"]},
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Dilan"]}
+      ]
+    },
+    {
+      "code": "KU17", "type": "Kumite", "pool": null, "time": "12:30", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Vali"]}
+      ]
+    },
+    {
+      "code": "KU6", "type": "Kumite", "pool": null, "time": "13:00", "tatami": 3,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Robin", "Forrest"]}
+      ]
+    },
+    {
+      "code": "KU1b", "type": "Kumite", "pool": null, "time": "13:30", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "red", "competitors": ["Daniel"]}
+      ]
+    },
+    {
+      "code": "KU1c", "type": "Kumite", "pool": null, "time": "14:00", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Sophie", "Elanah", "Charlotte"]}
+      ]
+    },
+    {
+      "code": "KU9", "type": "Kumite", "pool": null, "time": "14:00", "tatami": 3,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Abbie", "Grace"]}
+      ]
+    },
+    {
+      "code": "KU11", "type": "Kumite", "pool": null, "time": "14:00", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": "JKS", "colour": "blue", "competitors": ["Lewis (Big)"]}
+      ]
+    },
+    {
+      "code": "KU42", "type": "Kumite", "pool": null, "time": "14:30", "tatami": 4,
+      "entries": [
+        {"entryType": "team", "subTeam": null, "colour": "red", "competitors": ["Forrest", "Robin"]}
+      ]
+    },
+    {
+      "code": "KU12", "type": "Kumite", "pool": null, "time": "14:30", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": "JKS", "colour": "blue", "competitors": ["Noah"]}
+      ]
+    },
+    {
+      "code": "KU5", "type": "Kumite", "pool": "A", "time": "14:45", "tatami": 2,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Elanah", "Sophie"]}
+      ]
+    },
+    {
+      "code": "KU4", "type": "Kumite", "pool": "A", "time": "15:00", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "red", "competitors": ["Matteo", "Daniel", "Gabriel"]}
+      ]
+    },
+    {
+      "code": "KU43", "type": "Kumite", "pool": null, "time": "15:00", "tatami": 3,
+      "entries": [
+        {"entryType": "team", "subTeam": null, "colour": "blue", "competitors": ["Grace", "Abbie"]}
+      ]
+    },
+    {
+      "code": "KU13", "type": "Kumite", "pool": null, "time": "15:15", "tatami": 5,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Dominic"]}
+      ]
+    },
+    {
+      "code": "KU5", "type": "Kumite", "pool": "B", "time": "15:30", "tatami": 2,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Charlotte"]}
+      ]
+    },
+    {
+      "code": "KU4", "type": "Kumite", "pool": "B", "time": "16:00", "tatami": 1,
+      "entries": [
+        {"entryType": "individual", "subTeam": null, "colour": "blue", "competitors": ["Lewis (Little)", "Robert", "Moe"]}
+      ]
+    },
+    {
+      "code": "KU44", "type": "Kumite", "pool": null, "time": "16:00", "tatami": 4,
+      "entries": [
+        {"entryType": "individual", "subTeam": "JKS", "colour": "blue", "competitors": ["Noah", "Lewis (Big)"]}
+      ]
+    },
+    {
+      "code": "KU41", "type": "Kumite", "pool": null, "time": "16:30", "tatami": 2,
+      "entries": [
+        {"entryType": "team", "subTeam": null, "colour": "blue", "competitors": ["Elanah", "Charlotte", "Sophie"]}
+      ]
+    },
+    {
+      "code": "KU46", "type": "Kumite", "pool": null, "time": "16:30", "tatami": 5,
+      "entries": [
+        {"entryType": "team", "subTeam": null, "colour": "blue", "competitors": ["Harry", "Vali", "Dilan"]}
+      ]
+    },
+    {
+      "code": "KU40", "type": "Kumite", "pool": null, "time": "16:45", "tatami": 1,
+      "entries": [
+        {"entryType": "team", "subTeam": "York B", "colour": "blue", "competitors": ["Daniel", "Lewis (Little)", "Robert"]},
+        {"entryType": "team", "subTeam": "York A", "colour": "red",  "competitors": ["Gabriel", "Moe", "Matteo"]}
+      ]
+    }
+  ]
+}
+</script>
+
+<div id="app"></div>
+
+<script>
+const schedule = JSON.parse(document.getElementById('sd').textContent);
+
+function fmt(t) {
+  const [h, m] = t.split(':').map(Number);
+  const p = h >= 12 ? 'PM' : 'AM';
+  const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+  return h12 + ':' + String(m).padStart(2, '0') + '\u00a0' + p;
+}
+
+function allNames() {
+  const s = new Set();
+  schedule.events.forEach(e => e.entries.forEach(en => en.competitors.forEach(c => s.add(c))));
+  return [...s].sort((a, b) => a.localeCompare(b));
+}
+
+function eventsAt(time, tatami) {
+  return schedule.events.filter(e => e.time === time && e.tatami === tatami);
+}
+
+function hasName(ev, name) {
+  return ev.entries.some(en => en.competitors.includes(name));
+}
+
+function chip(name, colour, filter) {
+  const cls = filter && name === filter ? 'hl' : colour;
+  return '<span class="chip ' + cls + '">' + name + '</span>';
+}
+
+function renderEntry(entry, filter) {
+  const isTeam = entry.entryType === 'team';
+  let h = '<div class="entry' + (isTeam ? ' team-entry' : '') + '">';
+  if (entry.subTeam) h += '<div class="sub">' + entry.subTeam + '</div>';
+  h += '<div class="chips">';
+  if (isTeam) {
+    entry.competitors.forEach((c, i) => {
+      if (i > 0) h += '<span class="tsep">&amp;</span>';
+      h += chip(c, entry.colour, filter);
+    });
+  } else {
+    entry.competitors.forEach(c => { h += chip(c, entry.colour, filter); });
+  }
+  h += '</div></div>';
+  return h;
+}
+
+function renderCard(ev, filter, showTatami) {
+  const dimmed = filter && !hasName(ev, filter) ? ' dimmed' : '';
+  const typeClass = ev.type === 'Kata' ? 'kata' : 'kumite';
+  let h = '<div class="card ' + typeClass + dimmed + '">';
+  h += '<div class="card-head">';
+  h += '<span class="ecode">' + ev.code + '</span>';
+  h += '<span class="badge ' + (ev.type === 'Kata' ? 'kb' : 'ku') + '">' + ev.type + '</span>';
+  if (ev.pool) h += '<span class="badge kp">Pool\u00a0' + ev.pool + '</span>';
+  if (showTatami) h += '<span class="badge kt">Tatami\u00a0' + ev.tatami + '</span>';
+  h += '</div>';
+  ev.entries.forEach(en => { h += renderEntry(en, filter); });
+  h += '</div>';
+  return h;
+}
+
+function renderMobileList(filter) {
+  const events = schedule.events;
+  const times = [...new Set(events.map(e => e.time))].sort();
+  let h = '<div class="mobile-list">';
+  times.forEach(t => {
+    const timeEvents = events.filter(e => e.time === t).sort((a, b) => a.tatami - b.tatami);
+    if (!timeEvents.length) return;
+    if (filter && !timeEvents.some(ev => hasName(ev, filter))) return;
+    h += '<div class="time-block">';
+    h += '<div class="time-hdg">' + fmt(t) + '</div>';
+    timeEvents.forEach(ev => {
+      if (filter && !hasName(ev, filter)) return;
+      h += renderCard(ev, filter, true);
+    });
+    h += '</div>';
+  });
+  h += '</div>';
+  return h;
+}
+
+function render(filter) {
+  const events = schedule.events;
+  const times = [...new Set(events.map(e => e.time))].sort();
+  const names = allNames();
+
+  let h = '';
+
+  h += '<header>';
+  h += '<h1>' + schedule.name + '</h1>';
+  h += '<span>' + schedule.date + '</span>';
+  h += '</header>';
+
+  h += '<div class="legend">';
+  h += '<div class="leg"><div class="leg-bar" style="background:#7c6fef"></div>Kata</div>';
+  h += '<div class="leg"><div class="leg-bar" style="background:#e84545"></div>Kumite</div>';
+  h += '<div class="leg"><div class="leg-swatch" style="background:#dbeafe;border-color:#93c5fd"></div>Blue equipment</div>';
+  h += '<div class="leg"><div class="leg-swatch" style="background:#fee2e2;border-color:#fca5a5"></div>Red equipment</div>';
+  h += '<div class="leg"><div class="leg-swatch" style="background:#fef08a;border-color:#f59e0b"></div>Filtered competitor</div>';
+  h += '<div class="leg"><strong style="font-size:.76rem">Team:</strong><span style="font-size:.76rem;margin-left:3px">names joined by &amp;</span></div>';
+  h += '</div>';
+
+  h += '<div class="controls">';
+  h += '<label for="fil">Filter by competitor:</label>';
+  h += '<select id="fil" onchange="render(this.value)">';
+  h += '<option value="">— Show All —</option>';
+  names.forEach(n => {
+    h += '<option value="' + n + '"' + (filter === n ? ' selected' : '') + '>' + n + '</option>';
+  });
+  h += '</select>';
+  if (filter) {
+    h += '<button class="clear-btn" onclick="render(\'\')">&#x2715; Clear</button>';
+    h += '<span class="filt-info">Showing events for <strong>' + filter + '</strong></span>';
+  }
+  h += '</div>';
+
+  h += '<div id="desktop-view"><div class="wrap"><table>';
+  h += '<thead><tr>';
+  h += '<th class="tc">Time</th>';
+  for (let i = 1; i <= 5; i++) h += '<th>Tatami\u00a0' + i + '</th>';
+  h += '</tr></thead><tbody>';
+
+  times.forEach(t => {
+    const cells = [1, 2, 3, 4, 5].map(tat => eventsAt(t, tat));
+    if (!cells.some(c => c.length > 0)) return;
+
+    h += '<tr><td class="tc">' + fmt(t) + '</td>';
+    cells.forEach(evs => {
+      h += '<td>';
+      evs.forEach(ev => { h += renderCard(ev, filter, false); });
+      h += '</td>';
+    });
+    h += '</tr>';
+  });
+
+  h += '</tbody></table></div></div>';
+
+  h += '<div id="mobile-view">' + renderMobileList(filter) + '</div>';
+
+  document.getElementById('app').innerHTML = h;
+}
+
+render('');
+</script>
+</body>
+</html>
